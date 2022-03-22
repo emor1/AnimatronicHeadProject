@@ -1,0 +1,8 @@
+# files
+config.*
+ipaddr_port.*
+
+# folders
+Rcb4Lib/
+.ipynb_checkpoints/
+test/
