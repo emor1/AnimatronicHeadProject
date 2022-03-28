@@ -1,6 +1,7 @@
 # files
 config.*
 ipaddr_port.*
+*.blend1
 
 # folders
 Rcb4Lib/
