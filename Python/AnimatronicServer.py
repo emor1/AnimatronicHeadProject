@@ -6,9 +6,10 @@ import json
 from Rcb4Lib.Rcb4BaseLib import Rcb4BaseLib
 from configparser import ConfigParser
 
+# IPアドレス取得用
+import socket
 
-rcb4 = Rcb4BaseLib()
-rcb4.open("COM11", 115200, 1.3)
+
 
 
 def _map(x, in_min, in_max, out_min, out_max):
@@ -21,6 +22,7 @@ async def accept(websocket, path):
         # クライアントからメッセージを待機する。
         data = await websocket.recv()
         # コンソールに出力
+        print(data)
         data_json = json.loads(data)
         for face_data in data_json:
             if face_data == "JawOpen":
@@ -31,7 +33,7 @@ async def accept(websocket, path):
                 
                 jaw_angle = _map(jaw, 0.5, 0.0, 0.0, 1500.0)
                 jaw_angle += 6500
-                # print(int(jaw_angle))
+                print(int(jaw_angle))
                 rcb4.setSingleServo(2, 1, int(jaw_angle), 2)
             if face_data == "EyeBlinkLeft":
                 blink_l = data_json["EyeBlinkLeft"]
@@ -46,17 +48,27 @@ async def accept(websocket, path):
         # クライアントでechoを付けて再送信する。
         # await websocket.send(data_json)
 
+if __name__=="__main__":
+    print("Activate Server")
+    rcb4 = Rcb4BaseLib()
+    rcb4.open("COM12", 115200, 1.3)
 
-config = ConfigParser()
-config.read('config.ini')
-section = 'development'
-ip = config.get(section, 'ipaddr')
-port = int(config.get(section, 'port'))
+    print("Set Serial, and reading config file")
 
-decoder = json.JSONDecoder()
-# WebSocketサーバー生成。ホストはlocalhost、portに生成する。
-start_server = websockets.serve(accept, ip, port)
+    # Configファイルで実行する場合
+    # config = ConfigParser()
+    # config.read('Python/config.ini')
+    # section = 'development'
+    # ip = config.get(section, 'ipaddr')
+    # port = int(config.get(section, 'port'))
 
-# 非同期でサーバを待機する。
-asyncio.get_event_loop().run_until_complete(start_server)
-asyncio.get_event_loop().run_forever()
+    ip = socket.gethostbyname(socket.gethostname())
+    port = 9998
+    print(f"Server start: {ip}:{port}")
+    decoder = json.JSONDecoder()
+    # WebSocketサーバー生成。ホストはlocalhost、portに生成する。
+    start_server = websockets.serve(accept, ip, port)
+
+    # 非同期でサーバを待機する。
+    asyncio.get_event_loop().run_until_complete(start_server)
+    asyncio.get_event_loop().run_forever()
