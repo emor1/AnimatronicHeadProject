@@ -9,8 +9,9 @@
 
 ## フォルダー構成
 Python
-- AnimatronicServer.py
-- [Rcb4Lib](https://kondo-robot.com/faq/rcb-4-library-p100b) //近藤科学の   Rcb4のPythonライブラリの中のRcb4Libフォルダをここに配置する
+├ [Rcb4Lib/](https://kondo-robot.com/faq/rcb-4-library-p100b) //近藤科学の   Rcb4のPythonライブラリの中のRcb4Libフォルダをここに配置する
+├ AnimatronicServer.py
+└ WebsocketServer_test_success.py
 
 ## 環境
 * Python 3.7.9
