@@ -30,6 +30,9 @@ Python
 3. [Animatronic Server](AnimatronicServer.py)を実行する
 4. アプリケーションを実行し、コンソールに表示されるIPアドレスを入力して接続する
 
+### システム構成図(仮)
+![](../imgs/system_architecture.png)
+
 ## Unityアプリケーションの例
 
 
