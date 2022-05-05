@@ -8,15 +8,18 @@ from configparser import ConfigParser
 
 # IPアドレス取得用
 import socket
+# シリアル通信用
+import serial
 
 
-
+Eye_rotations = []
 
 def _map(x, in_min, in_max, out_min, out_max):
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
 
 async def accept(websocket, path):
+    EyeStateChanged = False
     # 無限ループ
     while True:
         # クライアントからメッセージを待機する。
@@ -45,13 +48,25 @@ async def accept(websocket, path):
                 blink_r_anlge = _map(blink_r, 0.0, 0.9, 7500, 4500)
                 rcb4.setSingleServo(1, 1, int(blink_r_anlge), 2)
                 print(blink_r)
+
+            if face_data == "EyeLookOutRight":
+                eye_outside_R = data_json["EyeLookOutRight"]
+
+
+            if EyeStateChanged:
+                eye_outside_R
+                serial_communication(Eye_rotations[0],Eye_rotations[1])
+
+
         # クライアントでechoを付けて再送信する。
         # await websocket.send(data_json)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     print("Activate Server")
     rcb4 = Rcb4BaseLib()
     rcb4.open("COM12", 115200, 1.3)
+
+    EyeBallBoard = serial.Serial("COM13", 115200,timeout=3)
 
     print("Set Serial, and reading config file")
 
@@ -72,3 +87,9 @@ if __name__=="__main__":
     # 非同期でサーバを待機する。
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()
+
+def serial_communication(data1, data2):
+    EyeBallBoard.write(bytes([0]))
+    EyeBallBoard.write(bytes([data1]))
+    EyeBallBoard.write(bytes([data2]))
+    

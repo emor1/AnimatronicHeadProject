@@ -1,13 +1,12 @@
 #include <Arduino.h>
 #include "Servo.h"
 
-#define NUMBER 4
+#define NUMBER 2
 
 // サーボの宣言
-Servo EyeVertical_Left;
-Servo EyeVertical_Right;
-Servo EyeHorizontal_Left;
-Servo EyeHorizontal_Right;
+Servo Eyeball_Left;
+Servo Eyeball_Right;
+
 
 // 角度の変数
 unsigned char angle;
@@ -16,16 +15,12 @@ bool test=false;
 
 void setup() {
   // put your setup code here, to run once:
-  EyeHorizontal_Left.attach(6);
-  EyeHorizontal_Right.attach(5);
-  EyeVertical_Left.attach(4);
-  EyeVertical_Right.attach(3);
+  Eyeball_Left.attach(4);
+  Eyeball_Right.attach(3);
 
-  EyeHorizontal_Left.write(90);
-  EyeHorizontal_Right.write(90);
-  EyeVertical_Left.write(90);
-  EyeVertical_Right.write(90);
-  Serial.begin(9600);
+  Eyeball_Left.write(90);
+  Eyeball_Right.write(90);
+  Serial.begin(115200);
 }
 
 void loop() {
@@ -38,11 +33,9 @@ void loop() {
       for(int i=0;i<NUMBER;i++){
         data[i] = int(Serial.read());
       }
-      
-      EyeHorizontal_Left.write(data[0]);
-      EyeHorizontal_Right.write(data[1]);
-      EyeVertical_Left.write(data[2]);
-      EyeVertical_Right.write(data[3]);
+    
+      Eyeball_Left.write(data[0]);
+      Eyeball_Right.write(data[1]);
 
       Serial.flush();
     }

@@ -2,6 +2,7 @@
 config.*
 ipaddr_port.*
 *.blend1
+.DS_Store
 
 # folders
 Rcb4Lib/
