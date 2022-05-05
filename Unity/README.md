@@ -2,7 +2,7 @@
 
 ## 環境
 使用PC
-* Macbook Air(M1)
+* MacBook Air(M1)
 
 ソフト
 * Unity2020.3.25

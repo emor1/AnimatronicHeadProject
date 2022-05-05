@@ -3,13 +3,13 @@
 # 概要
 アニマトロニクスのサーバーである
 [Animatronic Server](AnimatronicServer.py)を起動することで
-様々なアプリケーションからアニマトロニクスの操作が可能になる。
+さまざまなアプリケーションからアニマトロニクスの操作が可能になる。
 
 
 
 ## フォルダー構成
 Python
-├ [Rcb4Lib/](https://kondo-robot.com/faq/rcb-4-library-p100b) //近藤科学の   Rcb4のPythonライブラリの中のRcb4Libフォルダをここに配置する
+├ [Rcb4Lib/](https://kondo-robot.com/faq/rcb-4-library-p100b) //近藤科学の   Rcb4のPythonライブラリの中のRcb4Libフォルダーをここに配置する
 ├ AnimatronicServer.py
 └ WebsocketServer_test_success.py
 
