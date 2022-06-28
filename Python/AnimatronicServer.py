@@ -16,7 +16,8 @@ import serial
 Eye_rotations = [90,90,90,90]
 bias_angle = [0,0]
 
-EyeBallBoard = serial.Serial("COM3", 115200,timeout=3)
+# Arduino
+EyeBallBoard = serial.Serial("COM4", 115200,timeout=3)
 
 
 def mapping(x, in_min, in_max, out_min, out_max):

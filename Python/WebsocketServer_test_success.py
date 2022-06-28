@@ -4,6 +4,7 @@ import websockets
 # クライアント接続すると呼び出す。
 import json
 from configparser import ConfigParser
+import socket
 
 
 async def accept(websocket, path):
@@ -20,12 +21,13 @@ async def accept(websocket, path):
         # await websocket.send(data_json)
 
 
-config = ConfigParser()
-config.read('config.ini')
-section = 'development'
-ip = config.get(section, 'ipaddr')
-port = int(config.get(section, 'port'))
-
+# config = ConfigParser()
+# config.read('config.ini')
+# section = 'development'
+# ip = config.get(section, 'ipaddr')
+# port = int(config.get(section, 'port'))
+ip = socket.gethostbyname(socket.gethostname())
+port = 9998
 decoder = json.JSONDecoder()
 # WebSocketサーバー生成。ホストはlocalhost、portは9998に生成する。
 start_server = websockets.serve(accept, ip, port)
