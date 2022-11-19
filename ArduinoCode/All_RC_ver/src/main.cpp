@@ -21,14 +21,14 @@ bool test=false;
 
 void setup() {
   // put your setup code here, to run once:
-  EyeHorizontal_Left.attach(7);
-  EyeHorizontal_Right.attach(8);
-  EyeVertical_Left.attach(9);
-  EyeVertical_Right.attach(10);
+  EyeHorizontal_Left.attach(6);
+  EyeHorizontal_Right.attach(7);
+  EyeVertical_Left.attach(8);
+  EyeVertical_Right.attach(9);
 
-  EyeBlinkLeft.attach(11);
-  EyeBlinkRight.attach(12);
-  Jaw.attach(13);
+  EyeBlinkLeft.attach(10);
+  EyeBlinkRight.attach(11);
+  Jaw.attach(12);
 
   EyeHorizontal_Left.write(90);
   EyeHorizontal_Right.write(90);
@@ -53,12 +53,13 @@ void loop() {
       EyeHorizontal_Right.write(data[1]);
       EyeVertical_Left.write(data[2]);
       EyeVertical_Right.write(data[3]);
-      // // 追加
-      // EyeBlinkLeft.write(data[4]);
-      // EyeBlinkRight.write(data[5]);
-      // Jaw.write(data[6]);
+      // 追加
+      EyeBlinkLeft.write(data[4]);
+      EyeBlinkRight.write(data[5]);
+      Jaw.write(data[6]);
 
       Serial.flush();
+      Serial.println("e");
     }
   }
 
