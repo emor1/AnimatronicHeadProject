@@ -26,14 +26,14 @@ class WsClientManager():
         print("Finish.")
 
 if __name__ == "__main__":
-    ws_manager = WsClientManager(uri="ws://192.168.11.19:9998")
+    ws_manager = WsClientManager(uri="ws://133.27.188.4:9998")
 
     print("Start")
     # ws_manager.send(json.dumps({"JawOpen": 0.0,}))
     # time.sleep(5)
     ws_manager.send(json.dumps({"JawOpen": 0.9,"EyeLookUpRight":0.9,"EyeLookUpLeft":0.9}))
     time.sleep(5)
-    ws_manager.send(json.dumps({"JawOpen":0.05,"EyeLookUpRight":0,"EyeLookUpLeft":0}))
+    ws_manager.send(json.dumps({"JawOpen":0,"EyeLookUpRight":0.5,"EyeLookUpLeft":0}))
     time.sleep(1)
     # ws_manager.send(json.dumps({"EyeBlinkRight":1.0,"EyeBlinkLeft":1.0,"JawOpen":0.0,}))
     ws_manager.close()

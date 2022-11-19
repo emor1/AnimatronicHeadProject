@@ -34,6 +34,11 @@ void setup() {
   EyeHorizontal_Right.write(90);
   EyeVertical_Left.write(90);
   EyeVertical_Right.write(90);
+
+  EyeBlinkLeft.write(110);
+  EyeBlinkRight.write(70);
+  Jaw.write(168);
+
   Serial.begin(115200);
 
   pinMode(13, OUTPUT);
@@ -60,6 +65,8 @@ void loop() {
 
       Serial.flush();
       Serial.println("e");
+      Serial.flush();
+
     }
   }
 
